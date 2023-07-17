@@ -4,6 +4,7 @@ import productReducer from "./productSlice";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
+import selectedReducer from "./selectedSlice";
 
 const persistConfig = {
   key: "root",
@@ -21,6 +22,7 @@ const store = configureStore({
   reducer: {
     product: productReducer,
     cart: persistedReducer,
+    selectedProduct: selectedReducer,
   },
 });
 

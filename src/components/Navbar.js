@@ -18,10 +18,9 @@ const Navbar = () => {
         <Link className="navLink" to="/">
           Home
         </Link>
-        <Link className="navLink" to="/cart">
-          Cart
+        <Link className="cartCount navLink" to="/cart">
+          Cart items: {selector.cart.length}
         </Link>
-        <span className="cartCount">Cart items: {selector.cart.length}</span>
       </div>
     </div>
   );

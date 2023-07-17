@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { add } from "../store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../store/productSlice";
+import { select } from "../store/selectedSlice";
 import { STATUSES } from "../store/productSlice";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const selector = useSelector((state) => state.product);
@@ -23,7 +27,13 @@ const Products = () => {
   }, []);
 
   const handleAdd = (product) => {
+    alert(product.title + " added to the Cart");
     dispatch(add(product));
+  };
+
+  const handleSelect = (product) => {
+    navigate("/select-product"); // select page
+    dispatch(select(product));
   };
 
   if (selector.status === STATUSES.LOADING) {
@@ -40,8 +50,14 @@ const Products = () => {
         return (
           <div className="card" key={product.id}>
             <img src={product.image} alt="" />
-            <h4>{product.title}</h4>
-            <h5>{product.price}</h5>
+            <h4
+              className="productTitle"
+              onClick={() => handleSelect(product)}
+              style={{}}
+            >
+              {product.title}
+            </h4>
+            <h5>${product.price}</h5>
             <button className="btn" onClick={() => handleAdd(product)}>
               Add to cart
             </button>
