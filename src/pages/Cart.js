@@ -12,7 +12,7 @@ const Cart = () => {
     <div>
       <h3>Cart</h3>
       <div className="cartWrapper">
-        {selector?.map((product) => {
+        {selector.cart?.map((product) => {
           return (
             <div className="cartCard">
               <img src={product.image} />
